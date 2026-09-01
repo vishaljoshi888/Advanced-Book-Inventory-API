@@ -1,6 +1,5 @@
 name: Continuous Integration
 
-# Trigger this workflow on every push or pull request to the main branch
 on:
   push:
     branches: [ main ]
@@ -12,32 +11,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # Step 1: Check out the repository code onto the runner runner environment
+    # 1. Updated from v4 to v4.2.2+ to natively support newer runner engines
     - name: Checkout repository code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v4.2.2
 
-    # Step 2: Set up a clean Python environment
+    # 2. Updated from v5 to v5.4.0+ for native engine compatibility
     - name: Set up Python 3.11
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v5.4.0
       with:
         python-version: '3.11'
 
-    # Step 3: Cache dependencies to make future workflow runs much faster
+    # 3. Updated from v4 to v4.2.0+ for seamless execution
     - name: Cache pip dependencies
-      uses: actions/cache@v4
+      uses: actions/cache@v4.2.0
       with:
         path: ~/.cache/pip
         key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
         restore-keys: |
           ${{ runner.os }}-pip-
 
-    # Step 4: Install all required framework and library dependencies
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    # Step 5: Run your automated unit & mock-authenticated integration tests
     - name: Run Pytest Suite
       run: |
         pytest
