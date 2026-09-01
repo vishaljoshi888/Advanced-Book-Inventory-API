@@ -11,17 +11,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # 1. Updated from v4 to v4.2.2+ to natively support newer runner engines
     - name: Checkout repository code
       uses: actions/checkout@v4.2.2
 
-    # 2. Updated from v5 to v5.4.0+ for native engine compatibility
     - name: Set up Python 3.11
       uses: actions/setup-python@v5.4.0
       with:
         python-version: '3.11'
 
-    # 3. Updated from v4 to v4.2.0+ for seamless execution
     - name: Cache pip dependencies
       uses: actions/cache@v4.2.0
       with:
@@ -37,4 +34,4 @@ jobs:
 
     - name: Run Pytest Suite
       run: |
-        python -m pytest
+        PYTHONPATH=. python -m pytest
