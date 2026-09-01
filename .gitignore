@@ -1,0 +1,21 @@
+# --- FastAPI & Database ---
+# Block your local database binary file from being tracked
+book_store.db
+
+# --- Python Environment ---
+.venv/
+venv/
+ENV/
+env/
+*.pyc
+__pycache__/
+.pytest_cache/
+
+# --- Environment Secrets ---
+.env
+.env.*
+
+# --- IDEs and Editors ---
+.vscode/
+.idea/
+.DS_Store
